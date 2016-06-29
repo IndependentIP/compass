@@ -206,6 +206,14 @@ public class DriverManagerDataSource extends AbstractDataSource {
         return getConnectionFromDriverManager();
     }
 
+    public boolean isWrapperFor(final Class<?> aClass) throws SQLException {
+        return false;
+    }
+
+    public <T> T unwrap(final Class<T> aClass) throws SQLException {
+        return null;
+    }
+
     /**
      * This implementation delegates to
      * <code>getConnectionFromDriverManager</code>, using the given username

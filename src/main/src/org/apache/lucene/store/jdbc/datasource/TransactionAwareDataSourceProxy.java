@@ -72,6 +72,14 @@ public class TransactionAwareDataSourceProxy implements DataSource {
 
     private DataSource dataSource;
 
+    public boolean isWrapperFor(final Class<?> aClass) throws SQLException {
+        return false;
+    }
+
+    public <T> T unwrap(final Class<T> aClass) throws SQLException {
+        return null;
+    }
+
     /**
      * Create the data source with the given data source to wrap.
      */

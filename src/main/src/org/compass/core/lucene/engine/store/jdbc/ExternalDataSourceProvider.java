@@ -58,6 +58,14 @@ public class ExternalDataSourceProvider extends AbstractDataSourceProvider {
             return getConnection(username, password);
         }
 
+        public boolean isWrapperFor(final Class<?> aClass) throws SQLException {
+            return false;
+        }
+
+        public <T> T unwrap(final Class<T> aClass) throws SQLException {
+            return null;
+        }
+
         public Connection getConnection(String username, String password) throws SQLException {
             Connection conn;
             if (username == null) {

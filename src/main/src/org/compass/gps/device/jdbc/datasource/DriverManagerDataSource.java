@@ -100,6 +100,14 @@ public class DriverManagerDataSource extends AbstractDataSource {
         setPassword(password);
     }
 
+    public boolean isWrapperFor(final Class<?> aClass) throws SQLException {
+        return false;
+    }
+
+    public <T> T unwrap(final Class<T> aClass) throws SQLException {
+        return null;
+    }
+
     /**
      * Create a new DriverManagerDataSource with the given JDBC URL, not
      * specifying a username or password for JDBC access.
