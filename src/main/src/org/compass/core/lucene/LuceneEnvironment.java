@@ -592,6 +592,7 @@ public class LuceneEnvironment {
              * index. <p/> Defaults to 10.
              */
             public static final String MERGE_FACTOR = "compass.engine.optimizer.adaptive.mergeFactor";
+            public static final String MERGE_BOUNDARY = "compass.engine.optimizer.adaptive.mergeBoundary";
         }
 
     }

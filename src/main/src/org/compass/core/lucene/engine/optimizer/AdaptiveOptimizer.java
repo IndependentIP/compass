@@ -34,9 +34,11 @@ import org.compass.core.lucene.engine.manager.LuceneSearchEngineIndexManager;
 public class AdaptiveOptimizer extends AbstractLuceneSearchEngineOptimizer implements CompassConfigurable {
 
     private int mergeFactor;
+    private int mergeBoundary;
 
     public void configure(CompassSettings settings) throws CompassException {
         mergeFactor = settings.getSettingAsInt(LuceneEnvironment.Optimizer.Adaptive.MERGE_FACTOR, 10);
+        mergeBoundary  = settings.getSettingAsInt(LuceneEnvironment.Optimizer.Adaptive.MERGE_BOUNDARY , 3);
     }
 
     public boolean canBeScheduled() {
@@ -69,7 +71,7 @@ public class AdaptiveOptimizer extends AbstractLuceneSearchEngineOptimizer imple
             count += indexInfo.info(i).docCount();
         }
         int mergeFromSegment = 0;
-        for (mergeFromSegment = threshold; mergeFromSegment > 0; mergeFromSegment--) {
+        for (mergeFromSegment = threshold; mergeFromSegment > mergeBoundary ; mergeFromSegment--) {
             LuceneSubIndexInfo.LuceneSegmentInfo segmentInfo = indexInfo.info(mergeFromSegment - 1);
             if (count >= segmentInfo.docCount()) {
                 count += segmentInfo.docCount();
